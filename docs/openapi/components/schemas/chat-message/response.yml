@@ -1,0 +1,66 @@
+ChatMessageResponse:
+  type: object
+  required:
+    - item
+    - included
+  properties:
+    item:
+      $ref: '#/ChatMessage'
+    included:
+      $ref: '#/ChatMessageIncluded'
+    meta:
+      $ref: '#/ChatMessageMeta'
+ChatMessage:
+  type: object
+  required:
+    - id
+    - message
+    - type
+    - createdAt
+    - chatId
+  properties:
+    id:
+      type: string
+      format: uuid
+    message:
+      type: string
+    type:
+      type: string
+      enum: [ human ]
+    createdAt:
+      type: string
+      format: date-time
+    chatId:
+      type: string
+      format: uuid
+ChatMessageIncluded:
+  type: object
+  required:
+    - chats
+  properties:
+    chats:
+      additionalProperties:
+        $ref: '../chat/response.yml#/Chat'
+ChatMessageMeta:
+  type: object
+  schema:
+    oneOf:
+      responseMessage:
+        $ref: '#/ChatMessage'
+      promptMessage:
+        $ref: '#/ChatMessage'
+ChatMessageListResponse:
+  type: object
+  required:
+    - items
+    - included
+    - meta
+  properties:
+    items:
+      type: array
+      items:
+        $ref: '#/ChatMessage'
+    included:
+      $ref: '#/ChatMessageIncluded'
+    meta:
+      $ref: '../common/response.yml#/Pagination'

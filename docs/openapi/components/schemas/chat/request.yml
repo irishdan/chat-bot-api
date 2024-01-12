@@ -1,0 +1,14 @@
+ChatPostRequest:
+  type: object
+  required:
+    - title
+  properties:
+    title:
+      type: string
+ChatPatchRequest:
+  type: object
+  required:
+    - title
+  properties:
+    title:
+      type: string

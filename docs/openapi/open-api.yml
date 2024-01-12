@@ -1,0 +1,221 @@
+openapi: 3.0.0
+info:
+  title: AI Chat API
+  version: 0.0.1
+servers:
+  - url: http://localhost:3000
+    description: Development Server
+paths:
+  /chats:
+    get:
+      summary: Returns a list of Chats
+      tags: [ Chat ]
+      parameters:
+        - in: query
+          name: page
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: perPage
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/chat/response.yml#/ChatListResponse'
+    post:
+      summary: Creates a new Chat
+      tags: [ Chat ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './components/schemas/chat/request.yml#/ChatPostRequest'
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/chat/response.yml#/ChatResponse'
+        '400':
+          description: Bad Request
+          content:
+                application/json:
+                  schema:
+                    $ref: './components/schemas/common/response.yml#/ValidationErrorResponse'
+  /chats/{id}:
+    get:
+      summary: Returns a Chat by id.
+      tags: [ Chat ]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/chat/response.yml#/ChatResponse'
+    patch:
+      summary: Updates a Chat by id.
+      tags: [ Chat ]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './components/schemas/chat/request.yml#/ChatPatchRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/chat/response.yml#/ChatResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/common/response.yml#/ValidationErrorResponse'
+    delete:
+      summary: Deletes a Chat by id.
+      tags: [ Chat ]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+  /chats/{id}/stream:
+    get:
+      summary: Returns a stream of response tokens from the AI.
+      tags: [ Chat ]
+      parameters:
+        - in: path
+          description: The Chat id
+          name: id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            text/event-stream:
+              schema:
+                type: object
+                required: [token]
+                properties:
+                  token:
+                    type: string
+                    description: The chat message content
+  /chats/{chatId}/messages:
+    get:
+      summary: Returns a list of ChatMessages in a Chat.
+      tags: [ Chat ]
+      parameters:
+        - in: path
+          description: The Chat id
+          name: chatId
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - in: query
+          name: page
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: perPage
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/chat-message/response.yml#/ChatMessageListResponse'
+    post:
+      summary: Creates a ChatMessage in a Chat.
+      tags: [ Chat ]
+      parameters:
+        - in: path
+          description: The Chat id
+          name: chatId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                $ref: './components/schemas/chat-message/request.yml#/ChatMessagePostRequest'
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/chat-message/response.yml#/ChatMessageResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/common/response.yml#/ValidationErrorResponse'
+  /chats/{id}/messages/{messageId}:
+    get:
+      summary: Gets a ChatMessage.
+      tags: [ Chat ]
+      parameters:
+        - in: path
+          description: The Chat id
+          name: chatId
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - in: path
+          description: The Chat id
+          name: messageId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/chat-message/response.yml#/ChatMessageResponse'

@@ -1,0 +1,38 @@
+ValidationErrorResponse:
+  type: object
+  required:
+    - message
+    - error
+    - statusCode
+  properties:
+    message:
+      type: string
+      example: Bad request
+    error:
+      type: array
+      items:
+        type: string
+    statusCode:
+      type: integer
+      format: int64
+      minimum: 400
+      maximum: 499
+Pagination:
+  type: object
+  required:
+    - page
+    - perPage
+    - totalItems
+  properties:
+    page:
+      type: integer
+      format: int64
+      minimum: 0
+    perPage:
+      type: integer
+      format: int64
+      minimum: 0
+    totalItems:
+      type: integer
+      format: int64
+      minimum: 0

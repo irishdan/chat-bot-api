@@ -1,0 +1,13 @@
+ChatMessagePostRequest:
+  type: object
+  properties:
+    message:
+      type: string
+      description: The chat message content
+    type:
+      type: string
+      description: The chat message type
+      enum: [ human ]
+  required:
+    - message
+    - type

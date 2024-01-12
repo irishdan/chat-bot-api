@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: 123
       POSTGRES_DB: nest
     networks:
-      - nestopenai
+      - minimalapi
   redis:
     image: redis:latest
     command: redis-server
@@ -19,7 +19,7 @@ services:
     ports:
       - 6379:6379
     networks:
-      - nestopenai
+      - minimalapi
   redis-commander:
     image: rediscommander/redis-commander:latest
     environment:
@@ -29,21 +29,11 @@ services:
     ports:
       - 8085:8081
     networks:
-      - nestopenai
+      - minimalapi
     depends_on:
       - redis
-  test-db:
-    image: postgres:13
-    ports:
-      - 5435:5432
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123
-      POSTGRES_DB: nest
-    networks:
-      - nestopenai
 volumes:
   redis:
   redis-config:
 networks:
-  nestopenai:
+  minimalapi:
