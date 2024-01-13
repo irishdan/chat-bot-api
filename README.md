@@ -41,14 +41,15 @@ Each domain or bounded context can be represented as a module.
 Each module then has its application, domain, and infrastructure layers.
 
 #### Application Layer
-This contains commands, queries, and their respective handlers. It's also where DTOs (Data Transfer Objects) can be defined.
+This contains commands, queries, and their respective handlers. It's also where DTOs (Data Transfer Objects) are defined.
 
 #### Domain Layer
 This includes your core business logic - entities (or aggregates), value objects, domain services, events, and domain-specific interfaces for repositories and providers.
 
-### Infrastructure Layer
+#### Infrastructure Layer
 Houses technical implementations such as controllers (for HTTP routes), concrete repository implementations, and other providers.
 
+### Directory Structure
 The directory structure maintains the separation of concerns recommended by DDD while leveraging NestJS's modular system to organize code around domain boundaries effectively.
 
 ```yaml
@@ -72,13 +73,13 @@ The directory structure maintains the separation of concerns recommended by DDD 
 |   |   |   |-- /providers
 |   |   |   |   |-- third party providers
 |   |   /common (cross-cutting concerns, shared utilities, core functionality)
-|   |   |   |-- ... (similar structure as above)
+|   |   |-- ... (similar structure as above)
 ```
 
 ## Large Language Model
 
 Out of the box the API uses the OpenAiChatResponseProvider which uses the OpenAI API to generate responses. 
-There's also a LangChainChatResponseProvider which uses the LangChain API and a HuggingFaceChatResponseProvider which uses the HuggingFace API.
+There's also a LangChainChatResponseProvider which uses the [LangChainJs](https://js.langchain.com/) library and a HuggingFaceChatResponseProvider which uses the HuggingFace API.
 These providers implement the ChatResponseProvider interface and can be swapped out easily use dependency injection.
 
 ## Persistence
