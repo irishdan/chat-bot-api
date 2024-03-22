@@ -83,7 +83,7 @@ const domainServices = [
         ChatCollectionResponseBuilder,
         ChatMessageCollectionResponseBuilder,
         ChatMessageDtoProvider,
-        ChatDtoProvider
+        ChatDtoProvider,
     ],
 })
 export class AiModule {}

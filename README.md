@@ -79,8 +79,9 @@ The directory structure maintains the separation of concerns recommended by DDD 
 ## Large Language Model
 
 Out of the box the API uses the OpenAiChatResponseProvider which uses the OpenAI API to generate responses. 
-There's also a LangChainChatResponseProvider which uses the [LangChainJs](https://js.langchain.com/) library and a HuggingFaceChatResponseProvider which uses the HuggingFace API.
-These providers implement the ChatResponseProvider interface and can be swapped out easily use dependency injection.
+There's also a LangChainChatResponseProvider which uses the [LangChainJs](https://js.langchain.com/) library and a HuggingFaceChatResponseProvider which uses the HuggingFace API. 
+Ollama is supported with the OllamaChatResponseProvider also.
+These providers implement the ChatResponseProvider interface and can be swapped around easily using dependency injection.
 
 ## Persistence
 
