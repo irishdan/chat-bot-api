@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: 123
       POSTGRES_DB: nest
     networks:
-      - minimalapi
+      - development-api
   redis:
     image: redis:latest
     command: redis-server
@@ -19,7 +19,7 @@ services:
     ports:
       - 6379:6379
     networks:
-      - minimalapi
+      - development-api
   redis-commander:
     image: rediscommander/redis-commander:latest
     environment:
@@ -29,11 +29,11 @@ services:
     ports:
       - 8085:8081
     networks:
-      - minimalapi
+      - development-api
     depends_on:
       - redis
 volumes:
   redis:
   redis-config:
 networks:
-  minimalapi:
+  development-api:
