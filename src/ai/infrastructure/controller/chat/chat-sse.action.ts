@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 
 @Controller('chats')
 export class ChatSseAction {
-    constructor(private eventEmitter: EventEmitter2 ) {}
+    constructor(private eventEmitter: EventEmitter2) {}
 
     @Sse(':id/stream')
     async invoke(@Param('id') id: string): Promise<Observable<MessageEvent>> {

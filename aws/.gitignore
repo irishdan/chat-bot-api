@@ -1,0 +1,13 @@
+*.js
+!jest.config.js
+*.d.ts
+node_modules
+
+# CDK account specific stuff
+cdk.context.json
+.cdk.staging
+cdk.out
+
+.env
+
+

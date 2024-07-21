@@ -27,10 +27,13 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
+      - name: Remove aws directory
+        run: rm -rf aws
+
       - name: Create env file
         run: |
           touch .env &&
-          echo NODE_ENV=develop >> .env
+          echo OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} >> .env
 
       - name: Build and tag Docker image
         run: |

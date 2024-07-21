@@ -8,6 +8,10 @@ COPY . .
 
 RUN yarn install
 
+# Run migration command
+RUN yarn deploy:prisma:migrate
+RUN yarn prisma:generate
+
 ENV PORT=3000
 
 EXPOSE 3000
