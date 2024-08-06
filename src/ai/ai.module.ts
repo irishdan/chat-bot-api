@@ -29,6 +29,7 @@ import ChatMessageDtoProvider from './application/query/chat/dtoProvider/chat-me
 import ChatDtoProvider from './application/query/chat/dtoProvider/chat.dto-provider';
 import { GetChatMessageAction } from './infrastructure/controller/chat/get-chat-message.action';
 import { OpenAiChatResponseProvider } from './infrastructure/provider/openAi/open-ai.chat-response-provider';
+import { HealthCheckAction } from './infrastructure/controller/chat/health-check.action';
 
 const queryHandlers = [
     GetChatQueryHandler,
@@ -54,14 +55,10 @@ const controllers = [
     GetChatMessageAction,
     CreateChatMessageAction,
     ListChatMessagesAction,
+    HealthCheckAction,
 ];
 
-const domainServices = [
-    CreateChatMessageService,
-    CreateChatService,
-    DeleteChatService,
-    UpdateChatService,
-];
+const domainServices = [CreateChatMessageService, CreateChatService, DeleteChatService, UpdateChatService];
 
 @Module({
     imports: [CqrsModule],

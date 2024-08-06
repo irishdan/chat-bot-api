@@ -22,8 +22,8 @@ This API is a starting point for building AI chat applications! It's built in Ty
     yarn dev
 ```
 
-# Creating a chat
-- POST /chats with a title "tests chat"
+### Creating a chat
+- POST /chats with a title "test chat"
 - GET /chats/{id}/stream and subscribe to the SSE stream on the front end
 - PATCH /chats/{id} with a message "hello" and type "human" to send a message to the chat
 - If you have subscribed to the SSE stream you should see a response from the AI streamed to the front end
@@ -95,3 +95,8 @@ The LangChainOpenAiRedisBufferChatResponseProvider uses Redis and memory to cach
 ## API Specification
 
 The rest API is documented using Swagger [here](docs/openapi/open-api.yml) 
+
+## Deploying to AWS
+
+An AWS CDK application is included in the AWS directory. 
+This will deploy the API to AppRunner with an RDS database and an ElastiCache Redis cluster in a custom VPC.
