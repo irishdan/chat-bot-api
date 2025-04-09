@@ -9,6 +9,6 @@ export class CreateChatMessageCommand {
     ) {}
 
     static fromRequest(chatId: string, messageId: string, dto: CreateChatMessageRequest): CreateChatMessageCommand {
-        return new CreateChatMessageCommand(chatId, messageId, dto.type, dto.message);
+        return new CreateChatMessageCommand(chatId, messageId, dto.type ?? 'human', dto.message);
     }
 }

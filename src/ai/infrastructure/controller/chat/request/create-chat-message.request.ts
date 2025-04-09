@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export default class CreateChatMessageRequest {
     @IsString()
@@ -6,6 +6,6 @@ export default class CreateChatMessageRequest {
     message: string;
 
     @IsString()
-    @IsNotEmpty()
-    type: 'system' | 'human';
+    @IsOptional()
+    type?: 'system' | 'human';
 }

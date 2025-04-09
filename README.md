@@ -23,12 +23,21 @@ This API is a starting point for building AI chat applications! It's built in Ty
 ```
 
 ### Creating a chat
-- POST /chats with a title "test chat"
+- POST /chats with a title for the chat
+```json
+{
+  "title": "test chat"
+}
+```
 - GET /chats/{id}/stream and subscribe to the SSE stream on the front end
-- POST /chats/{id}/messages with a message "hello" and type "human" to send a message to the chat
+- POST /chats/{id}/messages with a message
+```json
+{
+  "message": "where is my mind?"
+}
+```
 - If you have subscribed to the SSE stream you should see a response from the AI streamed to the front end
-- POST /chats/{id}/messages another message
-- POST /chats/{id}/messages ...
+- POST /chats/{id}/messages again to continue the conversation
 - The full openapi spec is [here](docs/openapi/open-api.yml)
 
 ## API Architecture

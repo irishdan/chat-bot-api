@@ -7,7 +7,6 @@ ChatMessagePostRequest:
     type:
       type: string
       description: The chat message type
-      enum: [ human ]
+      enum: [ human, system ]
   required:
     - message
-    - type
