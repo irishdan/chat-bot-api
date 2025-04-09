@@ -9,10 +9,8 @@ import ResourceNotFoundException from '../../../../../common/application/excepti
 @Injectable()
 export default class ChatMessageDtoProvider {
     constructor(
-        @Inject('ChatRepositoryInterface')
-        private repository: ChatRepositoryInterface,
-        @Inject('CacheHandlerInterface')
-        private cache: CacheHandlerInterface,
+        @Inject('ChatRepositoryInterface') private repository: ChatRepositoryInterface,
+        @Inject('CacheHandlerInterface') private cache: CacheHandlerInterface,
     ) {}
 
     async getById(id: string): Promise<ChatMessageDto> {

@@ -9,10 +9,8 @@ import EntityNotFoundException from '../../../../../common/domain/exception/enti
 @Injectable()
 export default class ChatDtoProvider {
     constructor(
-        @Inject('ChatRepositoryInterface')
-        private repository: ChatRepositoryInterface,
-        @Inject('CacheHandlerInterface')
-        private cache: CacheHandlerInterface,
+        @Inject('ChatRepositoryInterface') private repository: ChatRepositoryInterface,
+        @Inject('CacheHandlerInterface') private cache: CacheHandlerInterface,
     ) {}
 
     async getById(id: string): Promise<ChatDto> {

@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { HfInference } from '@huggingface/inference';
 import * as dayjs from 'dayjs';
@@ -7,17 +6,16 @@ import { randomUUID } from 'crypto';
 import ChatMessageDtoProvider from '../../../application/query/chat/dtoProvider/chat-message.dto-provider';
 import { ChatMessageModel } from '../../../domain/model/chat/chat-message.model';
 import ChatResponseProviderInterface from '../../../domain/model/chat/chat-response-provider.interface';
+
 @Injectable()
 export class HuggingFaceChatResponseProvider implements ChatResponseProviderInterface {
     protected readonly MAX_HISTORY_MESSAGES = 50;
     protected readonly hf: HfInference;
 
     constructor(
-        private configService: ConfigService,
         private eventEmitter: EventEmitter2,
         private messageDtoProvider: ChatMessageDtoProvider,
     ) {
-        // this.hf = new HfInference('your access token');
         this.hf = new HfInference();
     }
 
